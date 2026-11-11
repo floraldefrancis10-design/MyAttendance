@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">
+        <div class="logo-icon">✓</div>
+        <div>
+            <h2>PATHFIT-1</h2>
+            <p>BSCS-1A Attendance System</p>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="page-title">
+        <h1>Student Attendance</h1>
+        <p>Manage and monitor student attendance records.</p>
+    </section>
+
+    <section class="controls">
+
+        <div class="input-group">
+            <label for="program">Program / Section</label>
+            <input type="text" id="program" value="BSCS-1A">
+        </div>
+
+        <div class="input-group">
+            <label for="attendanceDate">Date</label>
+            <input type="date" id="attendanceDate">
+        </div>
+
+        <div class="input-group">
+            <label for="attendancePeriod">Attendance Period</label>
+            <select id="attendancePeriod" onchange="changePeriod()">
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Evening">Evening</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="studentName">Student Name</label>
+            <input type="text" id="studentName"
+                   placeholder="Enter student name">
+        </div>
+
+        <button class="btn btn-primary" onclick="addStudent()">
+            Add Student
+        </button>
+
+        <button class="btn btn-success" onclick="markAllPresent()">
+            Mark All Present
+        </button>
+
+    </section>
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <p>Total Students</p>
+            <h2 id="totalStudents">0</h2>
+        </div>
+
+        <div class="stat-card present">
+            <p>Present</p>
+            <h2 id="presentCount">0</h2>
+        </div>
+
+        <div class="stat-card late">
+            <p>Late</p>
+            <h2 id="lateCount">0</h2>
+        </div>
+
+        <div class="stat-card absent">
+            <p>Absent</p>
+            <h2 id="absentCount">0</h2>
+        </div>
+
+        <div class="stat-card excuse">
+            <p>Excuse</p>
+            <h2 id="excuseCount">0</h2>
+        </div>
+
+    </section>
+
+    <section class="records">
+
+        <div class="records-header">
+            <div>
+                <h2>Student Records</h2>
+                <p id="periodLabel">Morning Attendance</p>
+            </div>
+
+            <div class="actions">
+                <input type="text" id="searchInput"
+                       placeholder="Search student..."
+                       oninput="searchStudents()">
+
+                <button class="btn btn-secondary" onclick="window.print()">
+                    Print
+                </button>
+
+                <button class="btn btn-primary" onclick="exportCSV()">
+                    Export CSV
+                </button>
+
+                <button class="btn btn-danger" onclick="clearAttendance()">
+                    Clear
+                </button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Student Name</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                        <th>Remarks</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="studentTable"></tbody>
+            </table>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
